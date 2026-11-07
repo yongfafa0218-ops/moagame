@@ -1,0 +1,23 @@
+# One GitHub repository, Netlify Functions and Netlify Blobs; no separate server.
+[build]
+  command = "npm run build"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
